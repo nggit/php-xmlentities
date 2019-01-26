@@ -29,7 +29,7 @@ class NCR
         while (($tok_pos = strpos($str_iso, '?')) !== false) {
             $byte_first = str_pad(decbin(ord($str[$tok_pos])), 8, '0', STR_PAD_LEFT);
             $zero_pos   = strpos($byte_first, '0');
-            $char_len   = $zero_pos ? $zero_pos : 1;
+            $char_len   = $zero_pos + !$zero_pos;
             $char       = substr($byte_first, $zero_pos + 1);
             for ($i = 1; $i < $char_len; $i++) {
                 $byte_next = decbin(ord($str[$tok_pos + $i]));
