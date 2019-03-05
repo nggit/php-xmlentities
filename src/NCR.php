@@ -27,7 +27,7 @@ class NCR
         }
         $encoded = '';
         while (($tok_pos = strpos($str_iso, '?')) !== false) {
-            $byte_first = str_pad(decbin(ord($str[$tok_pos])), 8, '0', STR_PAD_LEFT);
+            $byte_first = sprintf('%08b', ord($str[$tok_pos]));
             $zero_pos   = strpos($byte_first, '0');
             $char_len   = $zero_pos + !$zero_pos;
             $char       = substr($byte_first, $zero_pos + 1);
